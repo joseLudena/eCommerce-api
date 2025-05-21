@@ -7,7 +7,6 @@ class ProductGateway(ABC):
     def create(self, product: ProductModel):
         pass
 
-
 class ProductGatewayImpl(ProductGateway):
     def __init__(self, db: Session):
         self.db = db
@@ -18,5 +17,5 @@ class ProductGatewayImpl(ProductGateway):
         self.db.refresh(product)
         return product
 
-    def get_all(self):
-        return self.db.query(ProductModel).all()
+    def get_all(self, product: ProductModel):
+        return self.db.query(product).all()
