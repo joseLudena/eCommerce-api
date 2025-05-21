@@ -1,14 +1,17 @@
 FROM python:3.11-slim
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg \
+    apt-transport-https \
+    unixodbc-dev \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install -y curl gnupg ca-certificates apt-transport-https unixodbc-dev
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /usr/share/keyrings/microsoft.gpg
 
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-RUN mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+RUN echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/debian/11/prod bullseye main" > /etc/apt/sources.list.d/mssql-release.list
 
-RUN curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list
-
-RUN apt-get update
-RUN ACCEPT_EULA=Y apt-get install -y msodbcsql17
+RUN apt-get update && ACCEPT_EULA=Y apt-get install -y msodbcsql17
 
 WORKDIR /app
 
