@@ -23,7 +23,13 @@ def get_db():
 def create_product(data: ProductCreateDTO, db: Session = Depends(get_db)):
     repo = SQLProductRepository(db)
     use_case = CreateProductUseCase(repo)
-    result = use_case.execute(name=data.name, price=data.price)
+    result = use_case.execute(
+        name=data.name,
+        stock=data.stock,
+        price=data.price,
+        img=data.img,
+        description=data.description,
+    )
     return result
 
 

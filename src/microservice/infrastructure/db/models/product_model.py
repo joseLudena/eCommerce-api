@@ -10,3 +10,5 @@ class ProductModel(Base):
     name = Column(String, nullable=False)
     price = Column(Float, nullable=False)
     stock = Column(Integer, default=0)
+    img = Column(String, nullable=True)
+    description = Column(String, nullable=True)
