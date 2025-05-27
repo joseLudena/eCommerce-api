@@ -8,9 +8,7 @@ Backend para la prueba técnica "Mini E-commerce" desarrollado en Python con Fas
 
 - Python 3.8 o superior  
 - Git  
-- ODBC Driver 17+ para SQL Server (para conectarse a SQL Azure)
 
----
 
 ## Instalación
 
@@ -44,6 +42,29 @@ pip install uvicorn
 
 ```bash
 uvicorn src.main:app --reload
+```
+
+## Base de Datos
+Para poder visualizar la base de datos:
+
+- Server Name:
+```bash
+server-west-2.database.windows.net
+```
+
+- Login (User)  
+```bash
+supp
+```
+
+- Password:
+```bash
+G7v#9XpL!zQ2&fRt
+```
+
+- Options > Connections Properties > Connect to DataBase:
+```bash
+neoShop_db
 ```
 
 La API estará disponible en:
